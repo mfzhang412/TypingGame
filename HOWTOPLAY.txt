@@ -10,9 +10,7 @@ When done, press ctrl+c for both the ngrok and Powershell windows.
 
 
 
-To replace leaderboard:
-
-delete all contents from "userNameDataBase.json" and replace it with:
+To clear leaderboard, delete all contents from "userNameDataBase.json" and replace it with:
 {
 	"userNameData": {
 		"default": {
