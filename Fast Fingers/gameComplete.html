@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel = "stylesheet" type = "text/css" href = "/game.css">
+        <link href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel = "stylesheet">
+        <script type = "text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src = "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <meta name = "viewport" content = "width = device-width, initial-scale = 1.0, user-scalable = no">
+        
+        
+        <style>
+        * {
+          margin: 0;
+          padding: 0;
+        }
+        body {
+          font-family: Times, sans-serif;
+        }
+        .container {
+          position: fixed;
+          z-index: -1000;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          top: 0;
+          left: 0;
+        }
+        .container h1 {
+          text-align: center;
+          font-size: 55px;
+          text-transform: uppercase;
+          font-weight: 300;
+          color: #ffffff;
+          padding-top: 30%;
+          margin-bottom: 10%;
+        }
+        .container h3 {
+          text-align: center;
+          font-size: 25px;
+          text-transform: uppercase;
+          letter-spacing: 3px;
+          color: #ffffff;
+          margin-bottom: 5px;
+        }
+        #bg-elem {
+          position: absolute;
+          top: 0;
+          left: 0;
+          min-height: 100%;
+          min-width: 100%;
+        }
+        </style>
+        
+        
+    </head>
+    
+    
+    <body class = "container">
+        <!-- ..............................Background............................ -->
+        <video controls autoplay id="bg-elem" preload="auto" loop="loop" muted="muted">
+          <source src="/video.mp4" type="video/mp4">
+          Video not supported
+          <!--
+          Video is from https://www.youtube.com/watch?v=bAIs6DMQ4Jc
+          -->
+        </video>
+        <audio controls="controls" autoplay=true id="music" loop="true" style="visibility:hidden">
+          <source src="/music.mp3" type="audio/mp3" />
+          <!--
+          Music is from https://www.youtube.com/watch?v=XbxZargtXug
+          -->
+        </audio>
+        <script>
+          var sound = document.getElementById("music");
+          sound.volume = 0.30;
+        </script>
+        
+        <!-- ................................Title............................... -->
+        <div class = "row">
+            <div class = "col-lg-4">
+
+            </div>
+            <div class = "col-lg-4">
+                <h1 class = "typeHeading text-center">Fast Fingers</h1>
+            </div>
+            <div class = "col-lg-4">
+
+            </div>
+        </div>
+        <!-- ..................................................................... -->
+        <div class = "row">
+            <div class = "col-lg-4">                           
+            </div> 
+            <div class = "col-lg-4 sentence">  
+                <h2 id = "score" style="color:white"></h2>
+            </div>
+            <div class = "col-lg-6"  style="PADDING-LEFT: 15%"> 
+                <form id = "idform" action = "/start" method = "get">
+                    <h3 id = "userId" class = "text-center"></h3>                    
+                    <h3 class = "text-center">Play Again</h3>   
+                    <input class = "center-block vertical-center" type = "submit" value = " Play Again ">
+                </form>
+                <script>
+                    $('#idform').submit(function(e) {
+                        console.log("here");
+                        //alert(document.cookie.substring(document.cookie.indexOf('=')));                
+                        $.ajax({
+                            type: 'POST',
+                            url: $('#idform').attr('action'),
+                            data: { user: document.cookie.substring(document.cookie.indexOf('=') + 1)},
+                            success: function(data) { 
+                        
+                            }
+                    });
+                    //e.preventDefault();
+                    });
+                    $.getJSON('/userNameDataBase.json', function(parsedJSON) { 
+                        document.getElementById('score').innerHTML = "Your score is " + parsedJSON.userNameData[document.cookie.substring(document.cookie.indexOf('=') + 1)].score;
+                    });
+                </script>
+            </div>
+            <div class = "col-lg-6" style="PADDING-RIGHT: 15%">
+                <form id = "idform" action = "/leaderBoard" method = "get">
+                    <h3 class = "text-center">Leaderboard</h3>
+                    <input class = "center-block vertical-center" type = "submit" value = " Leaderboard ">                    
+                </form>
+            </div>
+        </div>
+
+    </body>    
+</html>

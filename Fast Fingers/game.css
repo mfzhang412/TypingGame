@@ -1,0 +1,13 @@
+.centerImage {
+    width:400px;
+    height:100px;
+    align-content:center;   
+}
+div.row {
+    height:300px;
+}
+.typeHeading {
+    font-family:courier;    
+    font-weight:800;
+    font-size:48pt;
+}

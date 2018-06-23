@@ -1,0 +1,23 @@
+How to play the game:
+
+Open ngrok --> type "ngrok http 3000" --> go to "Fast Fingers" folder and
+press ctrl+shift+rightclick --> select "Open Powershell window here" -->
+type "node gameServer.js" --> hit enter key --> go back to ngrok window -->
+type in the first "Forwarding" website into browser --> tell others to
+join from their laptops using the same website!!
+
+When done, press ctrl+c for both the ngrok and Powershell windows.
+
+
+
+To replace leaderboard:
+
+delete all contents from "userNameDataBase.json" and replace it with:
+{
+	"userNameData": {
+		"default": {
+			"score": 100,
+			"timeStart": "default",
+			"sentence": "default"
+		}}
+}
