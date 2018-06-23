@@ -14,7 +14,7 @@ To clear leaderboard, delete all contents from "userNameDataBase.json" and repla
 {
 	"userNameData": {
 		"default": {
-			"score": 100,
+			"score": 0,
 			"timeStart": "default",
 			"sentence": "default"
 		}}
